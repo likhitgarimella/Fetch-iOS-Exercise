@@ -31,6 +31,7 @@ struct ContentView: View {
                     List(viewModel.meals) { meal in
                         // navigate to meal details
                         NavigationLink(destination: MealDetailView(mealID: meal.idMeal, viewModel: viewModel)) {
+                            // meal names
                             Text(meal.strMeal)
                         }
                     }

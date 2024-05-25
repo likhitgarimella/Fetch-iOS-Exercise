@@ -9,34 +9,45 @@ import SwiftUI
 
 struct MealDetailView: View {
     let mealID: String
+    // view model
     @ObservedObject var viewModel: MealViewModel
 
     var body: some View {
+        // scroll view
         ScrollView {
             VStack(alignment: .leading) {
+                // error
                 if let errorMessage = viewModel.errorMessage {
                     Text("Error: \(errorMessage)")
                         .foregroundColor(.red)
                         .padding()
-                } else if viewModel.isLoading {
+                }
+                // loading
+                else if viewModel.isLoading {
                     ProgressView("Loading...")
                         .padding()
-                } else if let mealDetail = viewModel.selectedMealDetail {
+                }
+                // display
+                else if let mealDetail = viewModel.selectedMealDetail {
+                    // meal details:
+                    // meal title
                     Text(mealDetail.strMeal)
                         .font(.title)
                         .padding()
-
+                    
                     Text("Instructions")
                         .font(.headline)
                         .padding([.top, .leading, .trailing])
-
+                    
+                    // meal instructions
                     Text(mealDetail.strInstructions)
                         .padding([.leading, .trailing])
-
+                    
                     Text("Ingredients")
                         .font(.headline)
                         .padding([.top, .leading, .trailing])
-
+                    
+                    // meal ingredients
                     ForEach(mealDetail.ingredients, id: \.name) { ingredient in
                         Text("\(ingredient.name): \(ingredient.measure)")
                             .padding([.leading, .trailing])
@@ -44,8 +55,10 @@ struct MealDetailView: View {
                 }
             }
         }
+        // title
         .navigationTitle("Meal Details")
         .onAppear {
+            // fetchMealDetail func
             viewModel.fetchMealDetail(id: mealID)
         }
     }
