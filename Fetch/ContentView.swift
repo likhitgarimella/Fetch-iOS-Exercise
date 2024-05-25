@@ -12,11 +12,20 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            List(viewModel.meals) { meal in
-                NavigationLink(destination: MealDetailView(mealID: meal.idMeal, viewModel: viewModel)) {
-                    Text(meal.strMeal)
-//                    Text(meal.strMealThumb)
-//                    Text(meal.idMeal)
+            VStack {
+                if let errorMessage = viewModel.errorMessage {
+                    Text("Error: \(errorMessage)")
+                        .foregroundColor(.red)
+                        .padding()
+                } else if viewModel.isLoading {
+                    ProgressView("Loading...")
+                        .padding()
+                } else {
+                    List(viewModel.meals) { meal in
+                        NavigationLink(destination: MealDetailView(mealID: meal.idMeal, viewModel: viewModel)) {
+                            Text(meal.strMeal)
+                        }
+                    }
                 }
             }
             .navigationTitle("Desserts")
@@ -33,7 +42,14 @@ struct MealDetailView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            if let mealDetail = viewModel.selectedMealDetail {
+            if let errorMessage = viewModel.errorMessage {
+                Text("Error: \(errorMessage)")
+                    .foregroundColor(.red)
+                    .padding()
+            } else if viewModel.isLoading {
+                ProgressView("Loading...")
+                    .padding()
+            } else if let mealDetail = viewModel.selectedMealDetail {
                 Text(mealDetail.strMeal)
                     .font(.title)
                     .padding()
@@ -53,14 +69,12 @@ struct MealDetailView: View {
                     Text("\(ingredient.name): \(ingredient.measure)")
                         .padding([.leading, .trailing])
                 }
-            } else {
-                ProgressView("Loading...")
-                    .onAppear {
-                        viewModel.fetchMealDetail(id: mealID)
-                    }
             }
         }
         .navigationTitle("Meal Details")
+        .onAppear {
+            viewModel.fetchMealDetail(id: mealID)
+        }
     }
 }
 
