@@ -13,6 +13,7 @@
 		021DEC2D2C016A0800877FAF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 021DEC2C2C016A0800877FAF /* Preview Assets.xcassets */; };
 		021DEC362C016B2700877FAF /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DEC352C016B2700877FAF /* MealViewModel.swift */; };
 		021DEC3A2C028DC300877FAF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DEC392C028DC300877FAF /* Models.swift */; };
+		021DEC3C2C02925B00877FAF /* MealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DEC3B2C02925B00877FAF /* MealDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		021DEC2C2C016A0800877FAF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		021DEC352C016B2700877FAF /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
 		021DEC392C028DC300877FAF /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		021DEC3B2C02925B00877FAF /* MealDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +60,12 @@
 			children = (
 				021DEC242C016A0600877FAF /* FetchApp.swift */,
 				021DEC262C016A0600877FAF /* ContentView.swift */,
+				021DEC3B2C02925B00877FAF /* MealDetailView.swift */,
 				021DEC282C016A0800877FAF /* Assets.xcassets */,
-				021DEC2A2C016A0800877FAF /* Fetch.entitlements */,
-				021DEC2B2C016A0800877FAF /* Preview Content */,
 				021DEC392C028DC300877FAF /* Models.swift */,
 				021DEC352C016B2700877FAF /* MealViewModel.swift */,
+				021DEC2A2C016A0800877FAF /* Fetch.entitlements */,
+				021DEC2B2C016A0800877FAF /* Preview Content */,
 			);
 			path = Fetch;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				021DEC272C016A0600877FAF /* ContentView.swift in Sources */,
 				021DEC362C016B2700877FAF /* MealViewModel.swift in Sources */,
 				021DEC3A2C028DC300877FAF /* Models.swift in Sources */,
+				021DEC3C2C02925B00877FAF /* MealDetailView.swift in Sources */,
 				021DEC252C016A0600877FAF /* FetchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
