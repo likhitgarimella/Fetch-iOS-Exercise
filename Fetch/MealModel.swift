@@ -7,15 +7,16 @@
 
 import Foundation
 
-struct Meal: Identifiable, Codable {
-    let idMeal: String
+struct MealModel: Identifiable, Codable {
     let strMeal: String
+    let strMealThumb: String
+    let idMeal: String
     
     var id: String { idMeal }
 }
 
 struct MealResponse: Codable {
-    let meals: [Meal]
+    let meals: [MealModel]
 }
 
 struct MealDetail: Codable {
