@@ -8,28 +8,38 @@
 import SwiftUI
 
 struct ContentView: View {
+    // view model
     @StateObject private var viewModel = MealViewModel()
 
     var body: some View {
         NavigationView {
             VStack {
+                // error
                 if let errorMessage = viewModel.errorMessage {
                     Text("Error: \(errorMessage)")
                         .foregroundColor(.red)
                         .padding()
-                } else if viewModel.isLoading {
+                }
+                // loading
+                else if viewModel.isLoading {
                     ProgressView("Loading...")
                         .padding()
-                } else {
+                }
+                // display
+                else {
+                    // tableview/list
                     List(viewModel.meals) { meal in
+                        // navigate to meal details
                         NavigationLink(destination: MealDetailView(mealID: meal.idMeal, viewModel: viewModel)) {
                             Text(meal.strMeal)
                         }
                     }
                 }
             }
+            // title
             .navigationTitle("Desserts")
             .onAppear {
+                // fetchMeals func
                 viewModel.fetchMeals()
             }
         }
