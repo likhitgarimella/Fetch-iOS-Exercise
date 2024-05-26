@@ -25,12 +25,10 @@ struct MealDetailView: View {
                 }
                 else if let mealDetail = viewModel.selectedMealDetail { // display
                     // meal details:
-                    AsyncImage(url: URL(string: mealDetail.strMealThumb)) { image in    // meal image
-                        image.resizable()
-                            .aspectRatio(contentMode: .fit)
+                    // use CachedAsyncImage
+                    if let url = URL(string: mealDetail.strMealThumb) {
+                        CachedAsyncImage(url: url)
                             .frame(maxWidth: .infinity)
-                    } placeholder: {
-                        ProgressView()
                     }
                     
                     Text(mealDetail.strMeal)    // meal title
@@ -55,7 +53,7 @@ struct MealDetailView: View {
                 }
             }
         }
-        .navigationTitle("Meal Details")    // title
+        .navigationTitle("Meal Details")    // nav bar title
         .onAppear {
             viewModel.fetchMealDetail(id: mealID)   // fetchMealDetail func
         }

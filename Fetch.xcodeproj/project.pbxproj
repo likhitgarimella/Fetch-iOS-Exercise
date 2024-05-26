@@ -14,6 +14,7 @@
 		021DEC362C016B2700877FAF /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DEC352C016B2700877FAF /* MealViewModel.swift */; };
 		021DEC3A2C028DC300877FAF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DEC392C028DC300877FAF /* Models.swift */; };
 		021DEC3C2C02925B00877FAF /* MealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DEC3B2C02925B00877FAF /* MealDetailView.swift */; };
+		021DEC3E2C02C08A00877FAF /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DEC3D2C02C08A00877FAF /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		021DEC352C016B2700877FAF /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
 		021DEC392C028DC300877FAF /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		021DEC3B2C02925B00877FAF /* MealDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailView.swift; sourceTree = "<group>"; };
+		021DEC3D2C02C08A00877FAF /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				021DEC392C028DC300877FAF /* Models.swift */,
 				021DEC352C016B2700877FAF /* MealViewModel.swift */,
 				021DEC2A2C016A0800877FAF /* Fetch.entitlements */,
+				021DEC3D2C02C08A00877FAF /* ImageCache.swift */,
 				021DEC2B2C016A0800877FAF /* Preview Content */,
 			);
 			path = Fetch;
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				021DEC3E2C02C08A00877FAF /* ImageCache.swift in Sources */,
 				021DEC272C016A0600877FAF /* ContentView.swift in Sources */,
 				021DEC362C016B2700877FAF /* MealViewModel.swift in Sources */,
 				021DEC3A2C028DC300877FAF /* Models.swift in Sources */,

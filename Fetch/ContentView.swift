@@ -26,20 +26,18 @@ struct ContentView: View {
                     List(viewModel.meals) { meal in // tableview/list
                         NavigationLink(destination: MealDetailView(mealID: meal.idMeal, viewModel: viewModel)) {    // navigate to meal details
                             HStack {
-                                AsyncImage(url: URL(string: meal.strMealThumb)) { image in  // Display meal image
-                                    image.resizable()
-                                        .aspectRatio(contentMode: .fit)
+                                // use CachedAsyncImage
+                                if let url = URL(string: meal.strMealThumb) {
+                                    CachedAsyncImage(url: url)
                                         .frame(width: 50, height: 50)
-                                } placeholder: {
-                                    ProgressView()
                                 }
-                                Text(meal.strMeal)  // Display meal name
+                                Text(meal.strMeal)  // meal name
                             }
                         }
                     }
                 }
             }
-            .navigationTitle("Desserts")    // title
+            .navigationTitle("Desserts")    // nav bar title
             .onAppear {
                 viewModel.fetchMeals()  // fetchMeals func
             }
