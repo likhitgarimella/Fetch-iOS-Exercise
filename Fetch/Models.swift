@@ -8,44 +8,34 @@
 import Foundation
 
 struct Meal: Identifiable, Codable {
-    // meal id
-    let idMeal: String
-    // meal name
-    let strMeal: String
+    let idMeal: String  // meal id
+    let strMeal: String // meal name
     
     let strMealThumb: String
     
-    // identifier from idMeal
-    var id: String { idMeal }
+    var id: String { idMeal }   // identifier from idMeal
 }
 
 struct MealResponse: Codable {
-    // array of Meal objects
-    let meals: [Meal]
+    let meals: [Meal]   // array of Meal objects
 }
 
 struct MealDetailResponse: Codable {
-    // array of MealDetail objects
-    let meals: [MealDetail]
+    let meals: [MealDetail] // array of MealDetail objects
 }
 
 struct MealDetail: Codable {
     let strMeal: String
-    // addl params
     let strInstructions: String
-    
     let strMealThumb: String
-    // array of Ingredient structs...
-    let ingredients: [Ingredient]
+    let ingredients: [Ingredient]   // array of Ingredient structs...
     
-    // inside Ingredient...
-    struct Ingredient: Codable {
+    struct Ingredient: Codable {    // inside Ingredient...
         let name: String
         let measure: String
     }
     
-    // decode json
-    init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {    // decode json
         let container = try decoder.container(keyedBy: CodingKeys.self)
         strMeal = try container.decode(String.self, forKey: .strMeal)
         strInstructions = try container.decode(String.self, forKey: .strInstructions)

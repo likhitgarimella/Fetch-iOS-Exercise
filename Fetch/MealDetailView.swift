@@ -9,29 +9,23 @@ import SwiftUI
 
 struct MealDetailView: View {
     let mealID: String
-    // view model
-    @ObservedObject var viewModel: MealViewModel
+    @ObservedObject var viewModel: MealViewModel    // view model
 
     var body: some View {
-        // scroll view
         ScrollView {
             VStack(alignment: .leading) {
-                // error
-                if let errorMessage = viewModel.errorMessage {
+                if let errorMessage = viewModel.errorMessage {  // error
                     Text("Error: \(errorMessage)")
                         .foregroundColor(.red)
                         .padding()
                 }
-                // loading
-                else if viewModel.isLoading {
+                else if viewModel.isLoading {   // loading
                     ProgressView("Loading...")
                         .padding()
                 }
-                // display
-                else if let mealDetail = viewModel.selectedMealDetail {
+                else if let mealDetail = viewModel.selectedMealDetail { // display
                     // meal details:
-                    // meal image
-                    AsyncImage(url: URL(string: mealDetail.strMealThumb)) { image in
+                    AsyncImage(url: URL(string: mealDetail.strMealThumb)) { image in    // meal image
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(maxWidth: .infinity)
@@ -39,8 +33,7 @@ struct MealDetailView: View {
                         ProgressView()
                     }
                     
-                    // meal title
-                    Text(mealDetail.strMeal)
+                    Text(mealDetail.strMeal)    // meal title
                         .font(.title)
                         .padding()
                     
@@ -48,27 +41,23 @@ struct MealDetailView: View {
                         .font(.headline)
                         .padding([.top, .leading, .trailing])
                     
-                    // meal instructions
-                    Text(mealDetail.strInstructions)
+                    Text(mealDetail.strInstructions)    // meal instructions
                         .padding([.leading, .trailing])
                     
                     Text("Ingredients")
                         .font(.headline)
                         .padding([.top, .leading, .trailing])
                     
-                    // meal ingredients
-                    ForEach(mealDetail.ingredients, id: \.name) { ingredient in
+                    ForEach(mealDetail.ingredients, id: \.name) { ingredient in // meal ingredients
                         Text("\(ingredient.name): \(ingredient.measure)")
                             .padding([.leading, .trailing])
                     }
                 }
             }
         }
-        // title
-        .navigationTitle("Meal Details")
+        .navigationTitle("Meal Details")    // title
         .onAppear {
-            // fetchMealDetail func
-            viewModel.fetchMealDetail(id: mealID)
+            viewModel.fetchMealDetail(id: mealID)   // fetchMealDetail func
         }
     }
 }

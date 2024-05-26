@@ -8,50 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
-    // view model
-    @StateObject private var viewModel = MealViewModel()
+    @StateObject private var viewModel = MealViewModel()    // view model
 
     var body: some View {
         NavigationView {
             VStack {
-                // error
-                if let errorMessage = viewModel.errorMessage {
+                if let errorMessage = viewModel.errorMessage {  // error
                     Text("Error: \(errorMessage)")
                         .foregroundColor(.red)
                         .padding()
                 }
-                // loading
-                else if viewModel.isLoading {
+                else if viewModel.isLoading {   // loading
                     ProgressView("Loading...")
                         .padding()
                 }
-                // display
-                else {
-                    // tableview/list
-                    List(viewModel.meals) { meal in
-                        // navigate to meal details
-                        NavigationLink(destination: MealDetailView(mealID: meal.idMeal, viewModel: viewModel)) {
+                else {  // display
+                    List(viewModel.meals) { meal in // tableview/list
+                        NavigationLink(destination: MealDetailView(mealID: meal.idMeal, viewModel: viewModel)) {    // navigate to meal details
                             HStack {
-                                // Display meal image
-                                AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                                AsyncImage(url: URL(string: meal.strMealThumb)) { image in  // Display meal image
                                     image.resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 50, height: 50)
                                 } placeholder: {
                                     ProgressView()
                                 }
-                                // Display meal name
-                                Text(meal.strMeal)
+                                Text(meal.strMeal)  // Display meal name
                             }
                         }
                     }
                 }
             }
-            // title
-            .navigationTitle("Desserts")
+            .navigationTitle("Desserts")    // title
             .onAppear {
-                // fetchMeals func
-                viewModel.fetchMeals()
+                viewModel.fetchMeals()  // fetchMeals func
             }
         }
     }

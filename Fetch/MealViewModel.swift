@@ -22,35 +22,29 @@ class MealViewModel: ObservableObject {
     
     // fetches the list of meals from the API
     func fetchMeals() {
-        // check if url is valid
-        guard let url = URL(string: mealListURL) else {
+        guard let url = URL(string: mealListURL) else { // check if url is valid
             errorMessage = "Invalid URL"
             return
         }
         
         isLoading = true
         
-        // create a data task with url
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.shared.dataTask(with: url) { data, response, error in    // create a data task with url
             if let data = data {
                 do {
-                    // decode the response data
-                    let mealResponse = try JSONDecoder().decode(MealResponse.self, from: data)
+                    let mealResponse = try JSONDecoder().decode(MealResponse.self, from: data)  // decode the response data
                     DispatchQueue.main.async {
-                        // if successful, sort meals alphabetically
-                        self.meals = mealResponse.meals.sorted { $0.strMeal < $1.strMeal }
+                        self.meals = mealResponse.meals.sorted { $0.strMeal < $1.strMeal }  // if successful, sort meals alphabetically
                         self.isLoading = false
                     }
                 } catch {
-                    // error
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async {  // error
                         self.errorMessage = error.localizedDescription
                         self.isLoading = false
                     }
                 }
             } else if let error = error {
-                // error
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {  // error
                     self.errorMessage = error.localizedDescription
                     self.isLoading = false
                 }
@@ -60,37 +54,31 @@ class MealViewModel: ObservableObject {
     
     // fetches meal details by ID from the API
     func fetchMealDetail(id: String) {
-        // check if url is valid
-        guard let url = URL(string: "\(mealDetailURL)\(id)") else {
+        guard let url = URL(string: "\(mealDetailURL)\(id)") else { // check if url is valid
             errorMessage = "Invalid URL"
             return
         }
         
         isLoading = true
         
-        // create a data task with url
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.shared.dataTask(with: url) { data, response, error in    // create a data task with url
             if let data = data {
                 do {
-                    // decode the response data
-                    let mealDetailResponse = try JSONDecoder().decode(MealDetailResponse.self, from: data)
+                    let mealDetailResponse = try JSONDecoder().decode(MealDetailResponse.self, from: data)  // decode the response data
                     if let mealDetail = mealDetailResponse.meals.first {
-                        // if successful, set the selectedMealDetail property
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.async {  // if successful, set the selectedMealDetail property
                             self.selectedMealDetail = mealDetail
                             self.isLoading = false
                         }
                     }
                 } catch {
-                    // error
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async {  // error
                         self.errorMessage = error.localizedDescription
                         self.isLoading = false
                     }
                 }
             } else if let error = error {
-                // error
-                DispatchQueue.main.async {
+                DispatchQueue.main.async {  // error
                     self.errorMessage = error.localizedDescription
                     self.isLoading = false
                 }
