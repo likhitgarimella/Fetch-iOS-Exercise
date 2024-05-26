@@ -30,6 +30,15 @@ struct MealDetailView: View {
                 // display
                 else if let mealDetail = viewModel.selectedMealDetail {
                     // meal details:
+                    // meal image
+                    AsyncImage(url: URL(string: mealDetail.strMealThumb)) { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: .infinity)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    
                     // meal title
                     Text(mealDetail.strMeal)
                         .font(.title)

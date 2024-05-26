@@ -13,6 +13,8 @@ struct Meal: Identifiable, Codable {
     // meal name
     let strMeal: String
     
+    let strMealThumb: String
+    
     // identifier from idMeal
     var id: String { idMeal }
 }
@@ -31,6 +33,8 @@ struct MealDetail: Codable {
     let strMeal: String
     // addl params
     let strInstructions: String
+    
+    let strMealThumb: String
     // array of Ingredient structs...
     let ingredients: [Ingredient]
     
@@ -45,6 +49,7 @@ struct MealDetail: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         strMeal = try container.decode(String.self, forKey: .strMeal)
         strInstructions = try container.decode(String.self, forKey: .strInstructions)
+        strMealThumb = try container.decode(String.self, forKey: .strMealThumb)
         
         // looping over possible ingredient and measure pairs up to 20 and creating Ingredient objects
         var ingredients: [Ingredient] = []
@@ -66,5 +71,6 @@ struct MealDetail: Codable {
     enum CodingKeys: String, CodingKey {
         case strMeal
         case strInstructions
+        case strMealThumb
     }
 }

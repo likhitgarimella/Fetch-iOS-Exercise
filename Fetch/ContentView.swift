@@ -31,8 +31,18 @@ struct ContentView: View {
                     List(viewModel.meals) { meal in
                         // navigate to meal details
                         NavigationLink(destination: MealDetailView(mealID: meal.idMeal, viewModel: viewModel)) {
-                            // meal names
-                            Text(meal.strMeal)
+                            HStack {
+                                // Display meal image
+                                AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                                    image.resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 50)
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                // Display meal name
+                                Text(meal.strMeal)
+                            }
                         }
                     }
                 }
