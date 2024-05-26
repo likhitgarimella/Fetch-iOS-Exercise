@@ -49,12 +49,14 @@ struct MealDetail: Codable {
         // looping over possible ingredient and measure pairs up to 20 and creating Ingredient objects
         var ingredients: [Ingredient] = []
         for i in 1...20 {
-            if let nameKey = CodingKeys(stringValue: "strIngredient\(i)"),
-               let measureKey = CodingKeys(stringValue: "strMeasure\(i)"),
-               let name = try? container.decode(String.self, forKey: nameKey),
-               !name.isEmpty,
-               let measure = try? container.decode(String.self, forKey: measureKey),
-               !measure.isEmpty {
+            let nameKey = CodingKeys(stringValue: "strIngredient\(i)")
+            let measureKey = CodingKeys(stringValue: "strMeasure\(i)")
+            
+            if let nameKey = nameKey, let measureKey = measureKey,
+               let name = try? container.decodeIfPresent(String.self, forKey: nameKey),
+                !name.isEmpty,
+                    let measure = try? container.decodeIfPresent(String.self, forKey: measureKey),
+                        !measure.isEmpty {
                 ingredients.append(Ingredient(name: name, measure: measure))
             }
         }
