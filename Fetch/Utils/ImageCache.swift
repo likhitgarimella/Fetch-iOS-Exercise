@@ -34,7 +34,8 @@ struct CachedAsyncImage: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         } else {
-            ProgressView()
+            Rectangle()
+                .foregroundColor(.gray.opacity(0.1))
                 .onAppear {
                     loadImage()
                 }

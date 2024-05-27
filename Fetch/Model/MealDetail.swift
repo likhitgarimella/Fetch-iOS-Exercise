@@ -1,28 +1,11 @@
 //
-//  Models.swift
+//  MealDetail.swift
 //  Fetch
 //
 //  Created by Likhit Garimella on 5/25/24.
 //
 
 import Foundation
-
-struct Meal: Identifiable, Codable {
-    let idMeal: String  // meal id
-    let strMeal: String // meal name
-    
-    let strMealThumb: String    // meal image
-    
-    var id: String { idMeal }   // identifier from idMeal
-}
-
-struct MealResponse: Codable {
-    let meals: [Meal]   // array of Meal objects
-}
-
-struct MealDetailResponse: Codable {
-    let meals: [MealDetail] // array of MealDetail objects
-}
 
 // all params
 struct MealDetail: Codable {    // all optionals
@@ -96,6 +79,10 @@ struct MealDetail: Codable {    // all optionals
         }
         return ingredients
     }
+}
+
+struct MealDetailResponse: Codable {
+    let meals: [MealDetail] // array of MealDetail objects
 }
 
 extension MealDetail {

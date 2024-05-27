@@ -2,19 +2,16 @@
 //  MealViewModel.swift
 //  Fetch
 //
-//  Created by Likhit Garimella on 5/24/24.
+//  Created by Likhit Garimella on 5/25/24.
 //
 
 import Foundation
-import Combine
 
 class MealViewModel: ObservableObject {
     @Published var meals: [Meal] = []
     @Published var selectedMealDetail: MealDetail?
     @Published var isLoading = false
     @Published var errorMessage: String?
-    
-    private var cancellables = Set<AnyCancellable>()
     
     private let mealListURL = "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert"
     private let mealDetailURL = "https://themealdb.com/api/json/v1/1/lookup.php?i="
