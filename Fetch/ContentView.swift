@@ -8,35 +8,35 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = MealViewModel()
-
+    @StateObject private var viewModel = MealViewModel()    // view model
+    
     var body: some View {
         NavigationView {
             VStack {
-                if let errorMessage = viewModel.errorMessage {
+                if let errorMessage = viewModel.errorMessage {  // error
                     Text("Error: \(errorMessage)")
                         .foregroundColor(.red)
                         .padding()
-                } else if viewModel.isLoading {
+                } else if viewModel.isLoading { // loading
                     ProgressView("Loading...")
                         .padding()
-                } else {
-                    List(viewModel.meals) { meal in
-                        NavigationLink(destination: MealDetailView(mealID: meal.idMeal, viewModel: viewModel)) {
+                } else {    // display
+                    List(viewModel.meals) { meal in // tableview/list
+                        NavigationLink(destination: MealDetailView(mealID: meal.idMeal, viewModel: viewModel)) {    // navigate to meal details
                             HStack {
                                 if let url = URL(string: meal.strMealThumb) {
-                                    CachedAsyncImage(url: url)
+                                    CachedAsyncImage(url: url)  // meal image
                                         .frame(width: 50, height: 50)
                                 }
-                                Text(meal.strMeal)
+                                Text(meal.strMeal)  // meal name
                             }
                         }
                     }
                 }
             }
-            .navigationTitle("Desserts")
+            .navigationTitle("Desserts")    // nav bar title
             .onAppear {
-                viewModel.fetchMeals()
+                viewModel.fetchMeals()  // fetchMeals func
             }
         }
     }
