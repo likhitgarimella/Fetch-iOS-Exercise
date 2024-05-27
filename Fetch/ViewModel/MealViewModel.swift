@@ -25,7 +25,7 @@ class MealViewModel: ObservableObject {
         isLoading = true
         
         URLSession.shared.dataTask(with: url) { data, response, error in    // create a data task with url
-            if let data = data {
+            if let data = data {    // check if data is valid
                 do {
                     let mealResponse = try JSONDecoder().decode(MealResponse.self, from: data)  // decode the response data
                     DispatchQueue.main.async {
@@ -56,7 +56,7 @@ class MealViewModel: ObservableObject {
         isLoading = true
         
         URLSession.shared.dataTask(with: url) { data, response, error in    // create a data task with url
-            if let data = data {
+            if let data = data {    // check if data is valid
                 do {
                     let mealDetailResponse = try JSONDecoder().decode(MealDetailResponse.self, from: data)  // decode the response data
                     if let mealDetail = mealDetailResponse.meals.first {

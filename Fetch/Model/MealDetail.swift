@@ -70,11 +70,11 @@ struct MealDetail: Codable {    // all optionals
     
     var ingredients: [Ingredient] {
         var ingredients: [Ingredient] = []
-        for i in 1...20 {
+        for i in 1...20 {   // 20 ingredients & 20 measurements
             if let nameKey = self.value(forKey: "strIngredient\(i)") as? String,
                let measureKey = self.value(forKey: "strMeasure\(i)") as? String,
-               !nameKey.isEmpty, !measureKey.isEmpty {
-                ingredients.append(Ingredient(name: nameKey, measure: measureKey))
+               !nameKey.isEmpty, !measureKey.isEmpty {  // check if empty
+                ingredients.append(Ingredient(name: nameKey, measure: measureKey))  // append only when not empty
             }
         }
         return ingredients

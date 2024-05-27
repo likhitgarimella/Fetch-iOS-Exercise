@@ -27,6 +27,7 @@ struct ContentView: View {
                                 if let url = URL(string: meal.strMealThumb) {
                                     CachedAsyncImage(url: url)  // meal image
                                         .frame(width: 50, height: 50)
+                                        .cornerRadius(10)
                                 }
                                 Text(meal.strMeal)  // meal name
                             }
